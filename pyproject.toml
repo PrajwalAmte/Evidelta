@@ -1,0 +1,46 @@
+[project]
+name = "evidelta"
+version = "0.1.0"
+description = "External Change Intelligence for AI and Developer Platforms"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "fastapi>=0.110.0",
+  "uvicorn[standard]>=0.29.0",
+  "sqlalchemy>=2.0.30",
+  "alembic>=1.13.1",
+  "psycopg[binary]>=3.1.18,<3.4",
+  "pydantic-settings>=2.2.1",
+  "httpx>=0.27.0",
+  "python-dotenv>=1.0.1",
+  "structlog>=24.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.2.0",
+  "pytest-asyncio>=0.23.0",
+  "ruff>=0.5.0",
+  "mypy>=1.10.0",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = [
+  "app",
+  "app.api",
+  "app.api.routes",
+  "app.db",
+  "app.models",
+  "app.services",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"

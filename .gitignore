@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Build / packaging
+build/
+dist/
+*.whl
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local databases and state
+*.db
+*.sqlite3
+*.sqlite
+*.db-journal
+.evidelta/
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+
+# Node / frontend build output
+node_modules/
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# Python test coverage
+.coverage
+htmlcov/
+
+# Docker / local runtime artifacts
+.docker/
+*.pid
