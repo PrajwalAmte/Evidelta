@@ -49,52 +49,31 @@ The project currently includes:
 - Next.js 14 for the dashboard frontend
 - pytest for backend validation
 
-## Repository layout
+## System overview
 
-```text
-.
-├── app/
-│   ├── api/
-│   │   └── routes/
-│   │       ├── change_detection.py
-│   │       ├── extraction.py
-│   │       ├── ingestion.py
-│   │       ├── ui.py
-│   │       └── ...
-│   ├── db/
-│   │   ├── base.py
-│   │   └── __init__.py
-│   ├── models/
-│   │   ├── evidence.py
-│   │   └── __init__.py
-│   ├── services/
-│   │   ├── change_detection.py
-│   │   ├── evidence_pipeline.py
-│   │   ├── extraction.py
-│   │   ├── ingestion.py
-│   │   ├── llm.py
-│   │   ├── synthesis.py
-│   │   └── ...
-│   ├── config.py
-│   ├── main.py
-│   └── __init__.py
-├── frontend/
-│   ├── app/
-│   ├── package.json
-│   └── next.config.mjs
-├── tests/
-│   ├── test_change_detection.py
-│   ├── test_ingestion.py
-│   └── ...
-├── .env.example
-├── .gitignore
-├── Evidelta.md
-├── README.md
-├── pyproject.toml
-├── docker-compose.yml
-├── alembic/
-└── requirements or generated local files
+```mermaid
+flowchart LR
+    A[External signals\nGitHub / docs / status pages / forums / probes] --> B[Ingest & normalize]
+    B --> C[Store raw snapshots + provenance]
+    C --> D[Classify product + dimension]
+    D --> E[Cluster related evidence]
+    E --> F[Conservative status grading]
+    F --> G[Evidence feed + incident summary]
+    G --> H[Next.js dashboard]
+
+    H --> I[User review + evidence drill-down]
 ```
+
+## Why this matters
+
+Evidelta is built to answer one practical question: "What changed, for which product, and what evidence supports that claim?"
+
+The system is intentionally conservative:
+
+- weak or ambiguous evidence stays low-confidence instead of being inflated
+- classification prefers real signal text over URL assumptions
+- timestamps, authorship, and provenance must be valid before a record is trusted
+- the UI shows the evidence trail behind each conclusion rather than a vague summary
 
 ## Local development setup
 
